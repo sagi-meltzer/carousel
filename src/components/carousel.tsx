@@ -135,6 +135,7 @@ const Carousel = ({data = MOCK_DATA}: {data?: Grant[]}) => {
 
     const isAllChecked = Object.values(checkedState).every(Boolean) && Object.keys(checkedState).length > 0;
     const isIndeterminate = Object.values(checkedState).some(Boolean) && !isAllChecked;
+    
     const checkUncheckAll = () => {
         const updatedCheckedState: { [key: string]: boolean } = {};
         Object.keys(groupByCountry).forEach((country) => {
@@ -148,7 +149,7 @@ const Carousel = ({data = MOCK_DATA}: {data?: Grant[]}) => {
 
     useEffect(() => {
         setSelectedGrant([...checkedGrants].length > 0 ? checkedGrants.values().next().value : undefined);
-    }, [checkedState])
+    }, [_checkedGrants])
 
     return <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
         <Header selected={selectedGrant} grants={checkedGrants} onClick={handleClick} onSelect={setSelectedGrant}/>
